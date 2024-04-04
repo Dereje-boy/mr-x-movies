@@ -1,0 +1,27 @@
+<h1>This is movies page</h1>
+<form action="/movies" method="post" class="d-flex flex-column">
+    <label class="form-label w-100 fw-bold mt-4" for="movie-name">Movie Name or Title</label>
+    <input class="form-control fw-bold px-2 fs-5" type="text" name="movie-name">
+
+    <label class="form-label w-100 fw-bold mt-4" for="released-year">Released Year</label>
+    <input class="form-control fw-bold px-2 fs-5" type="month" name="released-year">
+
+    <label class="form-label w-100 fw-bold mt-4" for="country">Country</label>
+    <input class="form-control fw-bold px-2 fs-5" type="text" name="country">
+
+    <label class="form-label w-100 fw-bold mt-4" for="single-or-series">Single Or Series</label>
+    <select name="single-or-series" value="1">
+        <option class="form-control fw-bold px-2 fs-5" value="1">Single</option>
+        <option class="form-control fw-bold px-2 fs-5" value="2">Series</option>
+        <option class="form-control fw-bold px-2 fs-5" value="11">Single But Parts</option>
+    </select>
+
+    <label class="form-label w-100 fw-bold mt-4" for="storage-path">Storage Path</label>
+    <input class="form-control fw-bold px-2 fs-5" type="text" name="storage-path">
+
+    <label class="form-label w-100 fw-bold mt-4" for="thumbnail-name">Thumbnail Name</label>
+    <input class="form-control fw-bold px-2 fs-5" type="text" name="thumbnail-name">
+
+    <input class="btn btn-success fw-bold px-2 fs-5" type="submit" value="Add Movie">
+
+</form>

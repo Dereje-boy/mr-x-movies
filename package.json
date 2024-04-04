@@ -1,0 +1,39 @@
+{
+  "name": "mr-x-movies",
+  "version": "1.0.0",
+  "description": "This is a movie renting app that lets mr.x customers to select their movies from online and then have it in their usb or other media storage",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "author": "Dere Boy",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.12.2",
+    "nodemon": "^3.1.0",
+    "prisma": "^5.11.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.3"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.12.0",
+    "axios": "^1.6.8",
+    "b2": "^0.1.11",
+    "backblaze-b2": "^1.7.0",
+    "backbone": "^1.6.0",
+    "blob-stream": "^0.1.3",
+    "cookie-parser": "^1.4.5",
+    "dotenv": "^16.4.1",
+    "express": "^4.18.2",
+    "express-handlebars": "^5.3.3",
+    "express-session": "^1.18.0",
+    "g": "^2.0.1",
+    "global": "^4.4.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^8.1.1",
+    "multer": "^1.4.5-lts.1",
+    "pdfkit": "^0.14.0",
+    "tailwindcss": "^3.4.3",
+    "uuid": "^9.0.1"
+  }
+}
