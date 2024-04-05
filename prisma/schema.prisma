@@ -14,17 +14,30 @@ datasource db {
 }
 
 model Movies {
-  movie_id         String  @id @default(uuid())
-  movie_name       String
-  released_year    Int?
-  single_or_series S_or_S?
-  country String?
-  thumbnail_name   String?
-  storage_path String?
+  movie_id          String  @id @default(uuid())
+  movie_name        String
+  released_year     Int?
+  createdAt         DateTime @default(now())
+  single_or_series  S_or_S?
+  country           String?
+  thumbnail_name    String?
+  storage_path      String?
+  actors            actor[]
+
+  @@index([movie_name, released_year, createdAt, single_or_series, country,storage_path])
 }
 
 enum S_or_S {
   SINGLE
   SERIES
   SINGLE_BUT_PARTS
+}
+
+model actor{
+  actor_id              String  @id @default(uuid())
+  fullname              String?
+  profile_picture_path  String?
+  movies                Movies[]
+
+  @@index([fullname])
 }

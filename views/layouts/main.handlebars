@@ -5,9 +5,20 @@
     <title>Movies</title>
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
     <script defer src="/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/styles/main.css"/>
 </head>
-<body>
-<h1>Welcome Home</h1>
-{{{body}}}
+<body class="d-flex flex-column align-items-center my-3">
+    <header class="w-75 border-bottom border-primary d-flex justify-content-center align-items-center" style="min-height: 80px">
+        <h4>Mr X Movies</h4>
+    </header>
+    <section class="d-flex flex-column flex-grow-1 w-75 my-3">
+        {{{body}}}
+    </section>
+
+    <footer class="w-75 text-primary fw-bold d-flex flex-column align-items-center gap-0 border-bottom border-primary">
+        <p>Copyright © 2024</p>
+        <p>Developed By <strong class="text-danger text-decoration-underline">Dere Boy</strong></p>
+        <p>Email : <strong class="text-danger text-decoration-underline"> Derejeg35@gmail.com</strong></p>
+    </footer>
 </body>
 </html>
