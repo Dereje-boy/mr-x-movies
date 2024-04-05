@@ -48,7 +48,17 @@ app.get("/", async (req, res) => {
             released_year:"2021"
         },
     ]
-    res.render("index",{movies});
+
+    let message='';
+
+    try{
+        const DBmovies = await prisma.movies.findMany();
+        message = DBmovies.toString();
+        console.log(message)
+    }catch (e) {
+        message = e;
+    }
+    res.render("index",{movies,message})
 })
 
 app.listen(3000, () => console.log("server is up and running"));
@@ -65,9 +75,9 @@ const prisma = new PrismaClient();
 //     .then(inserted => {console.log(inserted)})
 //     .catch(e => console.log(e))
 
-prisma.movies.findMany().then(movies=>{
-    console.log(movies.length)
-}).catch(e=>console.log(e))
+// prisma.movies.findMany().then(movies=>{
+//     console.log(movies.length)
+// }).catch(e=>console.log(e))
 
 // prisma.movies.deleteMany({
 //     where:{
