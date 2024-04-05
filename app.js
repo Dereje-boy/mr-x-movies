@@ -19,7 +19,7 @@ app.get("/", async (req, res) => {
     const movies = [
         {
             movie_name:"John Wick",
-            thumbnial_path:"images/movies/after.jpg",
+            thumbnial_path:"images/movies/After.jpg",
             released_year:"2012"
         },
         {
