@@ -9,7 +9,7 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
@@ -18,19 +18,13 @@ model Movies {
   movie_name        String
   released_year     Int?
   createdAt         DateTime @default(now())
-  single_or_series  S_or_S?
+  single_or_series  String?
   country           String?
   thumbnail_name    String?
   storage_path      String?
   actors            actor[]
 
   @@index([movie_name, released_year, createdAt, single_or_series, country,storage_path])
-}
-
-enum S_or_S {
-  SINGLE
-  SERIES
-  SINGLE_BUT_PARTS
 }
 
 model actor{

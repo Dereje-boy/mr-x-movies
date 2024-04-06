@@ -16,6 +16,9 @@ app.use(body_parser())
 app.use("/movies", movies);
 
 app.get("/", async (req, res) => {
+
+    /*
+    sample movies list
     const movies = [
         {
             movie_name:"John Wick",
@@ -48,13 +51,24 @@ app.get("/", async (req, res) => {
             released_year:"2021"
         },
     ]
+    */
 
     let message='';
+    let movies = [];
+
+    const path = require('path')
 
     try{
         const DBmovies = await prisma.movies.findMany();
-        message = DBmovies.toString();
-        console.log(message)
+        // DBmovies.forEach(thisMovie=>{
+        //     const movie = {
+        //         movie_name:thisMovie.movie_name,
+        //         released_year:this
+        //     }
+        //     movies.push(movie)
+        // })
+        movies = DBmovies;
+        console.log(movies)
     }catch (e) {
         message = e;
     }
@@ -75,8 +89,8 @@ const prisma = new PrismaClient();
 //     .then(inserted => {console.log(inserted)})
 //     .catch(e => console.log(e))
 
-// prisma.movies.findMany().then(movies=>{
-//     console.log(movies.length)
+// prisma.movies.findMany({include:{actors:true}}).then(movies=>{
+//     console.log(movies)
 // }).catch(e=>console.log(e))
 
 // prisma.movies.deleteMany({

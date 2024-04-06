@@ -1,7 +1,107 @@
 <div class="d-flex flex-column flex-wrap gap-2 justify-content-start align-items-center flex-grow-1 w-100 h-100 ">
     <div class="d-flex w-75 justify-content-center gap-3" >
-        <input class="flex-grow-1 form-control fs-5 fw-bold w-75 border-0 border-bottom border-success" type="text" placeholder="search movies name...">
-        <button class="btn btn-outline-success fs-5 fw-bold  w-25" >Search</button>
+        <input
+            class="flex-grow-1 form-control fw-bold fs-5 fw-bold w-75 border-0 border-bottom border-success"
+           type="text"
+           placeholder="search movies name...">
+        <button class="btn btn-outline-success fs-5 fw-bold" >
+            Search
+        </button>
+
+        <!-- Modal -->
+
+        <div class="modal fade "
+             id="addMovieModal"
+             tabindex="-1"
+             aria-labelledby="exampleModalLabel"
+             aria-hidden="true"
+             role="modal">
+            <div class="modal-dialog" role="document">
+
+                <form class="modal-content" method="post" action="/movies" enctype="multipart/form-data">
+                    <div class="modal-header d-flex w-100 justify-content-center">
+                        <h3 class="text-success">Add New Movie</h3>
+                    </div>
+                    <div class="modal-body d-flex flex-column w-100 gap-3">
+
+                        <div class="preview-image d-none">
+                            <img class="w-100" src="images/movies/After.jpg" alt="poster preview" id="thumbnail_preview">
+                        </div>
+
+                        <label for="thumbnail_input" class="form-label d-flex flex-column">
+                            <h6 class="text-primary fw-bold">Poster Image</h6>
+                            <input type="file" name="thumbnail" id="thumbnail_input" accept="image/*"
+                                   class="form-control fw-bold"/>
+                        </label>
+
+                        <label for="movie_name" class="form-label d-flex flex-column">
+                            <h6 class="text-primary fw-bold">Movie Name</h6>
+                            <input type="text" name="movie_name"
+                                   class="form-control fw-bold" placeholder="Example: John Wick" required/>
+                        </label>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="checkbox-show-more">
+                            <label class="form-check-label fw-bold" for="checkbox-show-more">
+                                Show More ...
+                            </label>
+                        </div>
+
+                        <div class="show-more d-none flex-column">
+                            <label for="released_year" class="form-label d-flex flex-column">
+                                <h6 class="text-primary fw-bold">Released Year</h6>
+                                <input type="number" name="released_year"
+                                       class="form-control fw-bold" step="1" min="1900" max="2030" placeholder="Example: 2014"/>
+                            </label>
+
+                            <label for="country" class="form-label d-flex flex-column">
+                                <h6 class="text-primary fw-bold">Country</h6>
+                                <input type="text" name="country"
+                                       class="form-control fw-bold" placeholder="Example: USA"/>
+                            </label>
+
+                            <label for="single_or_series" class="form-label d-flex flex-column">
+                                <h6 class="text-primary fw-bold">Single Or Series</h6>
+                                <select name="single_or_series"
+                                        class="form-control fw-bold fw-bold" value="Single">
+                                    <option value="single" selected class="fw-bold" >Single</option>
+                                    <option value="series" class="fw-bold" >Series</option>
+                                    <option value="single_but_parts" class="fw-bold" >Single But Parts</option>
+                                </select>
+                            </label>
+
+                            <label for="storage_path" class="form-label d-flex flex-column">
+                                <h6 class="text-primary fw-bold">Storage Path</h6>
+                                <input type="text" name="storage_path"
+                                       class="form-control fw-bold" placeholder="Example: c:/users/dere/desktop/films"/>
+                            </label>
+
+                            <label for="actors" class="form-label d-flex flex-column">
+                                <h6 class="text-primary fw-bold">Actors</h6>
+                                <input type="text" name="actors"
+                                       class="form-control fw-bold" placeholder="Example: jason statham, john cena, jacky chian"/>
+                            </label>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                        <button type="submit" class="btn btn-success">
+                            <h5>Add Movie</h5>
+                        </button>
+
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+        <button
+            type="button"
+            data-toggle="modal"
+            data-target="#addMovieModal"
+            class="btn d-flex justify-content-center align-items-center">
+            <h3 class="btn btn-danger rounded rounded-circle">+</h3>
+        </button>
     </div>
 
     <p>{{message}}</p>
@@ -12,3 +112,5 @@
         {{/each}}
     </div>
 </div>
+
+<script src="/script/index.js"></script>
