@@ -1,8 +1,85 @@
-<div style="width: 300px"
-     class="d-flex flex-column p-3 bg-gray"
->
-    <img src="{{thumbnail_name}}"
-         alt = " movies thumbnail" height="300px" loading="lazy">
+<style>
+    .single-card-container{
+        cursor: pointer;
+        scale: .95;
+        transition-property: scale;
+        transition-duration: .2s;
+        transition-timing-function: ease-in-out;
+    }
+    .single-card-container:hover{
+        scale: 1;
+    }
+
+    .single-card-container:hover #image-hover{
+        top: 0;
+    }
+
+    .single-card-container:hover #ok-svg{
+        scale: .4;
+    }
+
+    .single-card-container:hover #ok-right{
+        fill: white;
+    }
+
+    #image-hover{
+        transition-property: top, border;
+        transition-duration: .3s;
+        transition-timing-function: ease-in-out;
+        height: 300px;
+        width: 100%;
+        position: absolute;
+        top: -350px;
+        left: 0;
+        z-index: 100;
+    }
+
+    #ok-svg{
+        transition-property: scale;
+        transition-duration: .3s;
+    }
+
+    #ok-container{
+        fill: green;
+    }
+
+    #ok-right{
+        fill: green;
+        transition-property: fill;
+        transition-timing-function: ease-in-out;
+        transition-delay: .3s;
+        transition-duration: .3s;
+    }
+
+</style>
+
+<div style="width: 300px;position: relative"
+     class="single-card-container d-flex flex-column p-3 bg-gray overflow-hidden"
+     id="single-card-container">
+    <img src="thumbnails/{{thumbnail_name}}"
+         alt = " movies thumbnail" height="300px" loading="lazy"
+         id="thumbnail-image"
+         class="rounded rounded-3 align-self-center">
+
+    <div class="d-flex flex-column align-items-center justify-content-center"
+         id="image-hover">
+        <svg
+                id="ok-svg"
+                xmlns="http://www.w3.org/2000/svg"
+             xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 48 48">
+            <path
+                    id="ok-container"
+                    fill=""
+                    d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z"
+            />
+            <path
+                    id="ok-right"
+                    fill=""
+                    d="M34.602,14.602L21,28.199l-5.602-5.598l-2.797,2.797L21,33.801l16.398-16.402L34.602,14.602z"/>
+        </svg>
+
+    </div>
+
     <h2 class="fs-1">{{movie_name}}</h2>
     <h3>Year Released : {{released_year}}</h3>
     <button class="btn btn-outline-danger">

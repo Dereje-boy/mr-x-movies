@@ -4,6 +4,7 @@ const body_parser = require("body-parser")
 
 const movies = require('./routes/movies');
 const { PrismaClient } = require('@prisma/client')
+const prisma = new PrismaClient();
 
 const app = express();
 
@@ -11,64 +12,22 @@ app.engine('handlebars', handlebars.engine)
 app.set('view engine', "handlebars")
 app.use(express.static(__dirname + "/public"))
 
-
 app.use(body_parser())
 app.use("/movies", movies);
 
 app.get("/", async (req, res) => {
 
-    /*
-    sample movies list
-    const movies = [
-        {
-            movie_name:"John Wick",
-            thumbnial_path:"images/movies/After.jpg",
-            released_year:"2012"
-        },
-        {
-            movie_name:"Mr. Robot",
-            thumbnial_path:"images/movies/Anna.jpg",
-            released_year:"2020"
-        },
-        {
-            movie_name:"After",
-            thumbnial_path:"images/movies/Ashfall.jpg",
-            released_year:"2021"
-        },
-        {
-            movie_name:"Bleeding Steel",
-            thumbnial_path:"images/movies/Bleeding.Steel.jpg",
-            released_year:"2013"
-        },
-        {
-            movie_name:"Blitz",
-            thumbnial_path:"images/movies/Blitz.jpg",
-            released_year:"2010"
-        },
-        {
-            movie_name:"ባለ ራይዱ",
-            thumbnial_path:"images/movies/ባለ ራይዱ.jpg",
-            released_year:"2021"
-        },
-    ]
-    */
-
     let message='';
     let movies = [];
 
-    const path = require('path')
-
     try{
-        const DBmovies = await prisma.movies.findMany();
-        // DBmovies.forEach(thisMovie=>{
-        //     const movie = {
-        //         movie_name:thisMovie.movie_name,
-        //         released_year:this
-        //     }
-        //     movies.push(movie)
-        // })
+        const DBmovies = await prisma.movies.findMany({
+            orderBy:{
+                createdAt:'desc'
+            }
+        });
         movies = DBmovies;
-        console.log(movies)
+        // console.log(movies)
     }catch (e) {
         message = e;
     }
@@ -76,8 +35,6 @@ app.get("/", async (req, res) => {
 })
 
 app.listen(3000, () => console.log("server is up and running"));
-
-const prisma = new PrismaClient();
 
 // console.log(prisma);
 
@@ -99,3 +56,40 @@ const prisma = new PrismaClient();
 //     }
 // }).then(deleted=>console.log(deleted))
 //     .catch(error=>console.log(error))
+
+
+/*
+sample movies list
+const movies = [
+    {
+        movie_name:"John Wick",
+        thumbnial_path:"images/movies/After.jpg",
+        released_year:"2012"
+    },
+    {
+        movie_name:"Mr. Robot",
+        thumbnial_path:"images/movies/Anna.jpg",
+        released_year:"2020"
+    },
+    {
+        movie_name:"After",
+        thumbnial_path:"images/movies/Ashfall.jpg",
+        released_year:"2021"
+    },
+    {
+        movie_name:"Bleeding Steel",
+        thumbnial_path:"images/movies/Bleeding.Steel.jpg",
+        released_year:"2013"
+    },
+    {
+        movie_name:"Blitz",
+        thumbnial_path:"images/movies/Blitz.jpg",
+        released_year:"2010"
+    },
+    {
+        movie_name:"ባለ ራይዱ",
+        thumbnial_path:"images/movies/ባለ ራይዱ.jpg",
+        released_year:"2021"
+    },
+]
+*/
