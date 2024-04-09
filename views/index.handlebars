@@ -1,11 +1,11 @@
 
-<div class="d-flex flex-column flex-wrap gap-2 justify-content-start align-items-center flex-grow-1 w-100 h-100 ">
-    <div class="d-flex w-75 justify-content-center gap-3" >
+<div class="d-flex flex-column gap-2 justify-content-start align-items-center w-100">
+    <div class="d-flex justify-content-center gap-5 w-50" >
         <input
-            class="flex-grow-1 form-control fw-bold fs-5 fw-bold w-75 border-0 border-bottom border-success"
+            class="flex-grow-1 form-control fw-bold fw-bold border-0 border-bottom border-success"
            type="text"
            placeholder="search movies name...">
-        <button class="btn btn-outline-success fs-5 fw-bold" >
+        <button class="btn btn-outline-success fw-bold" >
             Search
         </button>
 
@@ -106,14 +106,13 @@
             type="button"
             data-toggle="modal"
             data-target="#addMovieModal"
-            class="btn d-flex justify-content-center align-items-center">
-            <h3 class="btn btn-danger rounded rounded-circle">+</h3>
+            class="btn d-flex justify-content-center align-items-center bg-danger text-white rounded rounded-circle">+
         </button>
     </div>
 
     <p>{{message}}</p>
 
-    <div class="movies d-flex flex-wrap gap-2 justify-content-center align-items-start">
+    <div class="movies d-flex flex-wrap gap-5 gap-sm-2 justify-content-center align-items-start">
         {{#each movies}}
             {{> movieCard}}
         {{/each}}

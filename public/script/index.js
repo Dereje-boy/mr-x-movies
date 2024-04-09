@@ -1,7 +1,5 @@
 console.log('index.js is incorporated')
 
-// checkbox-show-more
-
 const thumbnail_input = document.getElementById('thumbnail_input')
 const thumbnail_preview = document.getElementById('thumbnail_preview');
 
@@ -24,3 +22,32 @@ thumbnail_input.addEventListener('change',function (e){
         reader.readAsDataURL(file);
     }
 })
+
+console.log($('.single-card-container'));
+Array.from($('.single-card-container')).forEach(singleCardContainer=>{
+    singleCardContainer.addEventListener('click',(e)=>{
+        const thisID = singleCardContainer.id;
+        movieClicked(thisID)
+        console.log(singleCardContainer.id)
+    })
+})
+
+function movieClicked(containerID) {
+    const svgContainerID = 'image-hover-'+containerID
+    if (selectedMovies.includes(containerID))//perform deselection
+        {
+            $(`#${svgContainerID}`).css('top','-350px')
+            $(`#${svgContainerID} #ok-svg`).css('scale','1')
+            $(`#${svgContainerID} #ok-right`).css('fill','green')
+            selectedMovies.pop(containerID);
+        }
+    else// perform selection
+        {
+            $(`#${svgContainerID}`).css('top','0')
+            $(`#${svgContainerID} #ok-svg`).css('scale','.4')
+            $(`#${svgContainerID} #ok-right`).css('fill','white')
+            selectedMovies.push(containerID);
+        }
+}
+
+const selectedMovies = [];

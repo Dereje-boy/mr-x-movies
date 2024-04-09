@@ -10,19 +10,23 @@
         scale: 1;
     }
 
-    .single-card-container:hover #image-hover{
-        top: 0;
+    .single-card-container:hover .image-hover{
+        /*top: 0;*/
     }
 
-    .single-card-container:hover #ok-svg{
-        scale: .4;
+    /*.single-card-container:hover #ok-svg{*/
+    /*    scale: .4;*/
+    /*}*/
+
+    /*.single-card-container:hover #ok-right{*/
+    /*    fill: white;*/
+    /*}*/
+
+    .text-and-buttons{
+        bottom: 0px;
     }
 
-    .single-card-container:hover #ok-right{
-        fill: white;
-    }
-
-    #image-hover{
+    .image-hover{
         transition-property: top, border;
         transition-duration: .3s;
         transition-timing-function: ease-in-out;
@@ -31,7 +35,6 @@
         position: absolute;
         top: -350px;
         left: 0;
-        z-index: 100;
     }
 
     #ok-svg{
@@ -53,16 +56,16 @@
 
 </style>
 
-<div style="width: 300px;position: relative"
-     class="single-card-container d-flex flex-column p-3 bg-gray overflow-hidden"
-     id="single-card-container">
+<div style="height:400px;position: relative"
+     class="single-card-container d-flex bg-dark flex-column justify-content-start overflow-hidden"
+     id="{{movie_id}}">
     <img src="thumbnails/{{thumbnail_name}}"
-         alt = " movies thumbnail" height="300px" loading="lazy"
+         alt = " movies thumbnail" height="auto" width="400px" loading="lazy"
          id="thumbnail-image"
-         class="rounded rounded-3 align-self-center">
+         class="rounded rounded-3 align-self-center flex-grow-1" style="object-fit: cover">
 
-    <div class="d-flex flex-column align-items-center justify-content-center"
-         id="image-hover">
+    <div class="image-hover d-flex flex-column align-items-center justify-content-center"
+         id="image-hover-{{movie_id}}">
         <svg
                 id="ok-svg"
                 xmlns="http://www.w3.org/2000/svg"
@@ -80,9 +83,9 @@
 
     </div>
 
-    <h2 class="fs-1">{{movie_name}}</h2>
-    <h3>Year Released : {{released_year}}</h3>
-    <button class="btn btn-outline-danger">
-        <h4>Add to Favorite</h4>
-    </button>
+    <div class="text-and-buttons bg-dark w-100 text-white d-flex flex-column align-items-center justify-content-center" style="position:absolute; bottom: 0; left: 0">
+        <h2 class="fs-1 fw-bold text-wrap text-center w-100 text-uppercase">{{movie_name}}</h2>
+        <h3 class="fw-bold text-wrap">{{released_year}}</h3>
+        <p class="d-none">{{movie_id}}</p>
+    </div>
 </div>
