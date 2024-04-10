@@ -108,6 +108,35 @@
             data-target="#addMovieModal"
             class="btn d-flex justify-content-center align-items-center bg-danger text-white rounded rounded-circle">+
         </button>
+
+        <!-- Modal -->
+        <div class="modal fade "
+             id="movieSelection"
+             tabindex="-1"
+             aria-labelledby="exampleModalLabel"
+             aria-hidden="true"
+             role="modal">
+            <div class="modal-dialog" role="document">
+
+                <div class="modal-content">
+                    <div class="modal-header d-flex w-100 justify-content-center">
+                        <h3 class="text-success">Selected Movies</h3>
+                    </div>
+                    <div class="modal-body d-flex flex-column w-100 gap-3 " id="movie-modal-body">
+
+                    </div>
+                    <div class="modal-footer d-flex gap-3 flex-wrap align-items-center justify-content-center">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <button
+                type="button"
+                data-toggle="modal"
+                data-target="#movieSelection"
+                class="btn d-flex justify-content-center align-items-center bg-primary text-white rounded rounded-3">SM
+        </button>
     </div>
 
     <p>{{message}}</p>
@@ -117,6 +146,7 @@
             {{> movieCard}}
         {{/each}}
     </div>
+
 </div>
 
 <script src="/script/index.js"></script>
