@@ -1,4 +1,3 @@
-console.log('index.js is incorporated')
 
 const thumbnail_input = document.getElementById('thumbnail_input')
 const thumbnail_preview = document.getElementById('thumbnail_preview');
@@ -23,7 +22,24 @@ thumbnail_input.addEventListener('change',function (e){
     }
 })
 
-console.log($('.single-card-container'));
+Array.from($('.thumbnail-image')).forEach(thisImage=>{
+
+    const image = new Image();
+    image.onload = function () {
+
+        //hiding the animation svg
+        $(thisImage).parent().children('.loading-svg').css('scale','0')
+        $(thisImage).parent().children('.loading-svg').toggleClass('d-block d-none')
+
+        //showing the image
+        $(thisImage).css('scale','1')
+
+        //changing the image src to correct path from its own alt
+        thisImage.src = thisImage.alt;
+    }
+    image.src = thisImage.alt;
+})
+
 Array.from($('.single-card-container')).forEach(singleCardContainer=>{
     singleCardContainer.addEventListener('click',(e)=>{
         console.log(e.target.id);
@@ -62,7 +78,7 @@ function renderSelectedMovies() {
         // const thisMovieP = $(`<p class="align-items-center d-flex justify-content-center">${movie}</p>`);
 
         const movie_name_h2 = $('#'+movie).children('.text-and-buttons').children('.movie-name')
-        console.log(movie_name_h2.text());
+        // console.log(movie_name_h2.text());
 
         const containerDiv = $('<div class="d-flex justify-content-between align-items-center overflow-hidden"></div>')
         const numberP = $(`<p class="px-2 fw-bold text-danger overflow-hidden">${index+1}</p>`)
@@ -72,7 +88,7 @@ function renderSelectedMovies() {
         const deleteMovie = $(`<button class="btn btn-danger fw-bold ">X</button>`);
 
         $(deleteMovie).on('click',(e)=>{
-            console.log($('#' + movie).click());
+            // console.log($('#' + movie).click());
         })
 
         $(containerDiv).append($(numberP))
@@ -82,3 +98,16 @@ function renderSelectedMovies() {
         $('#movie-modal-body').append(containerDiv);
     })
 }
+
+//searching movies
+$('#search-button').click((e)=>{
+    const value = $('#search-movies').val();
+    $.get('/movies/search',(data,status)=>{
+        //status === success if success
+        if (status !== 'success') return;
+
+        console.log(status);
+        console.log(data);
+    })
+    console.log()
+})

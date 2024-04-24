@@ -23,6 +23,26 @@ const upload = multer({storage:multerStorage});
 
 const adminID = 210564;
 
+router.get('/',(req, res)=>{
+    console.log('welcome to get movies route');
+    res.render('anim')
+})
+
+router.get('/search',async (req,res)=>{
+    prisma.movies.findMany({
+        where:{
+            movie_name:{
+                contains:'a'
+            }
+        }
+    }).then((data)=>{
+        console.log(data)
+    }).catch((error)=>{
+        console.log('Error \n', error);
+    })
+    res.send("I have received your search...")
+})
+
 router.post('/',upload.single('thumbnail'), async (req,res)=>{
     console.log("body: ", req.body);
 
